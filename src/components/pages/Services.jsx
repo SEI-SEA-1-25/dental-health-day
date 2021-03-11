@@ -1,12 +1,14 @@
-function Services() {
+import { Link } from "react-router-dom";
+
+function Services(props) {
   return (
     <div>
       <h1>These are the services we provide:</h1>
-      <ul>
-        <li>Drillin' and Fillin'</li>
-        <li>Molar Massage</li>
-        <li>Cucumber Mask</li>
-      </ul>
+      {props.services.map((service) => (
+        <div>
+          <Link to={`/services/${service.id}`}>{service.name}</Link>
+        </div>
+      ))}
     </div>
   );
 }
