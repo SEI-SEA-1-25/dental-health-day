@@ -77,7 +77,7 @@ $ npm start
 Your browser should open to <http://localhost:3000/> and you'll see the standard "Welcome to React" message with a fancy rotating atomic icon. `create-react-app` creates several files for us in a directory called `src`. Open the `App.jsx`
 file in your editor.
 
-Remember, `App.jsx` contains our main application (it's what's called by `index.jsx`). You should see the basic.JSXX structure of the standard React starter page. Make sure the file is the same thing you're looking at in the browser by finding the text `Welcome to React` inside an `<h2>` element.
+Remember, `App.jsx` contains our main application (it's what's called by `index.jsx`). You should see the basic JSX structure of the standard React starter page. Make sure the file is the same thing you're looking at in the browser by finding the text `Welcome to React` inside an `<h2>` element.
 
 Change the text to say `Hello!`, save the file and make sure you see the changes automatically appear in your browser.
 
@@ -105,7 +105,7 @@ $ npm install react-router-dom
 
 Let's start the app again. Enter the command `npm start` in your terminal.
 
-Let's get rid of the standard "Welcome to React" page and replace it with our own dental spa home page. Continue editing `App.jsx`: take out most of the.JSXX contents, and delete the import statement for `logo.svg`, which we won't use.
+Let's get rid of the standard "Welcome to React" page and replace it with our own dental spa home page. Continue editing `App.jsx`: take out most of the JSX contents, and delete the import statement for `logo.svg`, which we won't use.
 
 The `App.jsx` file contains one component that our whole app will live inside of. Remember that React components have a return value from the main function (or from the render method if they're class-based) that defines what the component will look like when it is rendered on the webpage.
 
@@ -343,7 +343,7 @@ We'll add one `<Link>` component that leads to each of our different content pag
 
 > Did you notice that we don't reference components here? We simply make links for users to click that connect to URLs, and the `Router` section in the code handles the actual component changes.
 
-We can include those links in a `<nav>` element at the top of our page. It will stay on the page permanently, and the different components will be swapped between each other below it. There's actually nothing special about the `<nav>` element. It behaves exactly like a `<div>`. `<nav>` Is just a semantic element that gives your.JSXX more meaning when people read it.
+We can include those links in a `<nav>` element at the top of our page. It will stay on the page permanently, and the different components will be swapped between each other below it. There's actually nothing special about the `<nav>` element. It behaves exactly like a `<div>`. `<nav>` is just a semantic element that gives your JSX more meaning when people read it.
 
 In your `App.jsx`, inside the `<Router>` (because we want it rendered!) and before the `Route` statements, put:
 
@@ -378,25 +378,28 @@ And now the nav bar will have spaces like it should. Try it!
 Here's what our final `App.jsx` looks like:
 
 ```js
-class App extends Component {
-  render() {
-    return (
-      <Router>
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import Services from "./components/pages/Services";
+import Contact from "./components/pages/Contact";
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
         <nav>
-          <Link to="/">Go to Home Page</Link>
+          <Link to="/">Home</Link>
           {" | "}
-          <Link to="/services">See Our Services</Link>
+          <Link to="/services">Our Services</Link>
           {" | "}
           <Link to="/contact">Contact Us!</Link>
         </nav>
-        <main>
-          <Route exact path="/" component={Home} />
-          <Route path="/services" component={Services} />
-          <Route path="/contact" component={Contact} />
-        </main>
-      </Router>
-    );
-  }
+        <Route exact path="/" component={Home} />
+        <Route path="/services" component={Services} />
+        <Route path="/contact" component={Contact} />
+      </div>
+    </Router>
+  );
 }
 
 export default App;
@@ -404,7 +407,7 @@ export default App;
 
 > Check it out! Does yours work?
 
-### A bit more Modularization
+### A Bit More Modularization
 
 You can see how the number of components can really start to stack up. Code organization is very important while also being hotly debated. We've already stared the organization process by creating nested folder structure for our components (`/components` and `/pages`), let's add a bit more to that.
 
@@ -419,24 +422,19 @@ We're going to create a component called `Header` which will contain our `nav` a
 Here's what your `Header.jsx` should look like:
 
 ```js
-import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Header extends Component {
-  render() {
-    return (
-      <header>
-        <nav>
-          <Link to="/">Go to Home Page</Link>
-          {" | "}
-          <Link to="/services">See Our Services</Link>
-          {" | "}
-          <Link to="/contact">Contact Us!</Link>
-        </nav>
-      </header>
-    );
-  }
-}
+const Header = () => (
+  <header>
+    <nav>
+      <Link to="/">Home</Link>
+      {" | "}
+      <Link to="/services">Our Services</Link>
+      {" | "}
+      <Link to="/contact">Contact Us!</Link>
+    </nav>
+  </header>
+);
 
 export default Header;
 ```
