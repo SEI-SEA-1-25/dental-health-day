@@ -53,8 +53,8 @@ Remember, the URL routes are paths off our main website. We could put our websit
 
 Our routes say that if someone goes to `ourdomain.com/` they will see our home page with welcome text.
 
-- The content of this page will all be defined in its own `Home` component in a file called `Home.js`.
-- If someone navigates to the URL `ourdomain.com/contact`, they will see content with the business address, a phone number, and an email. All of this content will be defined in a component called `Contact` in a file called `Contact.js`.
+- The content of this page will all be defined in its own `Home` component in a file called `Home.jsx`.
+- If someone navigates to the URL `ourdomain.com/contact`, they will see content with the business address, a phone number, and an email. All of this content will be defined in a component called `Contact` in a file called `Contact.jsx`.
 
 In the below codealong, we will walk through building this out together.
 
@@ -74,10 +74,10 @@ $ cd dental-spa
 $ npm start
 ```
 
-Your browser should open to <http://localhost:3000/> and you'll see the standard "Welcome to React" message with a fancy rotating atomic icon. `create-react-app` creates several files for us in a directory called `src`. Open the `App.js`
+Your browser should open to <http://localhost:3000/> and you'll see the standard "Welcome to React" message with a fancy rotating atomic icon. `create-react-app` creates several files for us in a directory called `src`. Open the `App.jsx`
 file in your editor.
 
-Remember, `App.js` contains our main application (it's what's called by `index.js`). You should see the basic JSX structure of the standard React starter page. Make sure the file is the same thing you're looking at in the browser by finding the text `Welcome to React` inside an `<h2>` element.
+Remember, `App.jsx` contains our main application (it's what's called by `index.jsx`). You should see the basic.JSXX structure of the standard React starter page. Make sure the file is the same thing you're looking at in the browser by finding the text `Welcome to React` inside an `<h2>` element.
 
 Change the text to say `Hello!`, save the file and make sure you see the changes automatically appear in your browser.
 
@@ -105,31 +105,26 @@ $ npm install react-router-dom
 
 Let's start the app again. Enter the command `npm start` in your terminal.
 
-Let's get rid of the standard "Welcome to React" page and replace it with our own dental spa home page. Continue editing `App.js`: take out most of the JSX contents, and delete the import statement for `logo.svg`, which we won't use.
+Let's get rid of the standard "Welcome to React" page and replace it with our own dental spa home page. Continue editing `App.jsx`: take out most of the.JSXX contents, and delete the import statement for `logo.svg`, which we won't use.
 
-The `App.js` file contains one component that our whole app will live inside of. Remember that React components have a `render(){ ... }` function that defines what the component will look like when it is rendered on the webpage.
+The `App.jsx` file contains one component that our whole app will live inside of. Remember that React components have a return value from the main function (or from the render method if they're class-based) that defines what the component will look like when it is rendered on the webpage.
 
-> Reminder! The render function alway has to return _at most_ one top-level element. It's common to wrap everything in your component in a `div` to make sure you satisfy this constraint.
+> Reminder! That UI value must have _at most_ one top-level element. It's common to wrap everything in your component in a `div` to make sure you satisfy this constraint.
 
 **So...**
 
-Let's add one `<h1>` that says `Dental Spa` and a paragraph with some short welcome text. Your `App.js` file should now look like the code below. Save the file and check your browser to make sure the changes show up.
+Let's add one `<h1>` that says `Dental Spa` and a paragraph with some short welcome text. Your `App.jsx` file should now look like the code below. Save the file and check your browser to make sure the changes show up.
 
-**App.js**
+**App.jsx**
 
 ```js
-import React, { Component } from "react";
-import "./App.css";
-
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Dental Spa</h1>
-        <p>Welcome to my dental spa.</p>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <h1>Dental Spa</h1>
+      <p>Welcome to my dental spa.</p>
+    </div>
+  );
 }
 
 export default App;
@@ -139,51 +134,44 @@ Great! Now we have a simple homepage set up. Let's move on to getting the rest o
 
 # Creating Our Homepage Component
 
-We've been editing `App.js`, which defines one component for our entire application. So far our app manually shows just the homepage. Let's refactor this so the content of the homepage is moved into its own component called `Home`.
+We've been editing `App.jsx`, which defines one component for our entire application. So far our app manually shows just the homepage. Let's refactor this so the content of the homepage is moved into its own component called `Home`.
 
 1. Create a new folder in `src` called `components`
 2. In that folder, make another folder called `pages` (this will hold the components that render whole pages!)
-3. Create a new file in your `pages` folder called `Home.js`.
-4. Write a basic component and move the content of your `return` statement in `App.js` to the `return` in your `Home.js` component.
-5. Go back to the `App.js` file and delete the `<h1>` and `<p>` tags where we used to have content written directly inside our `App` component. We don't need that written inside `App` any longer, because we just moved it all to the new `Home` component.
+3. Create a new file in your `pages` folder called `Home.jsx`.
+4. Write a basic component and move the content of your `return` statement in `App.jsx` to the `return` in your `Home.jsx` component.
+5. Go back to the `App.jsx` file and delete the `<h1>` and `<p>` tags where we used to have content written directly inside our `App` component. We don't need that written inside `App` any longer, because we just moved it all to the new `Home` component.
 6. Instead, we need to call our new component. Put `<Home />` inside the `<div>` in the `App` component. This tells the `App` component to render the `Home` component right there inside the div.
-7. Don't forget to import it at the top of `App.js`.
+7. Don't forget to import it at the top of `App.jsx`.
 
-Your `App.js` and `Home.js` files should look like this after you've properly created and imported the `Home` component.
+Your `App.jsx` and `Home.jsx` files should look like this after you've properly created and imported the `Home` component.
 
-**App.js**
+**App.jsx**
 
 ```js
-import React, { Component } from "react";
-import "./App.css";
 import Home from "./components/pages/Home";
 
-class App extends Component {
-  render() {
-    return (
-      <main>
-        <Home />
-      </main>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Home />
+    </div>
+  );
 }
+
 export default App;
 ```
 
-**Home.js**
+**Home.jsx**
 
 ```js
-import React, { Component } from "react";
-
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Dental Spa</h1>
-        <p>Welcome to my dental spa.</p>
-      </div>
-    );
-  }
+function Home() {
+  return (
+    <div className="Home">
+      <h1>Dental Spa</h1>
+      <p>Welcome to my dental spa.</p>
+    </div>
+  );
 }
 
 export default Home;
@@ -193,35 +181,30 @@ export default Home;
 
 The purpose of our site is to create several components that we can swap out as the main content of the main page of our application in order to create a modern Single Page Application. We'll create two more components, and then we'll start routing things up.
 
-1. Create a new file called `Services.js`
-2. Create a new file called `Contact.js`
+1. Create a new file called `Services.jsx`
+2. Create a new file called `Contact.jsx`
 
-To create these new files, follow the same procedure we used to create the `Home` component. Basically, we used the `App` component as a template: create each file, change the name of the component to its new name, then replace the JSX in the `render() { ... }` function with custom content. Be sure to import each new component into `App.js` just like we did with the `Home` component.
+To create these new files, follow the same procedure we used to create the `Home` component. Basically, we used the `App` component as a template: create each file, change the name of the component to its new name, then replace the JSX in the return value with custom content. Be sure to import each new component into `App.jsx` just like we did with the `Home` component!
 
 You can put your own content to be rendered by each component if you'd like.
 
-Now that we have our components made, there's nothing stopping us from importing multiple components into our App.js. So now, we have:
+Now that we have our components made, there's nothing stopping us from importing multiple components into our App.jsx. So now, we have:
 
-**App.js**
+**App.jsx**
 
 ```js
-import React, { Component } from "react";
-import "./App.css";
-
 import Home from "./components/Home";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Home />
-        <Services />
-        <Contact />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Home />
+      <Services />
+      <Contact />
+    </div>
+  );
 }
 
 export default App;
@@ -242,7 +225,7 @@ Here's the general syntax for creating routes. React Router uses some of its own
 - `path` - defining the URL path that leads to the component.
 - `component` - defining what component users will see when they navigate to the path.
 
-Delete what is currently returned in the `render` function of your `App.js`, and replace it with a Router component call with three routes, as shown below.
+Delete what is currently returned in the `return` for your `App.jsx` function, and replace it with a Router component call with three routes, as shown below.
 
 ```js
 class App extends Component {
@@ -272,14 +255,14 @@ There are three other important things to note here:
 
 ## Import Statements
 
-In order to use the React Router components in `App.js`, you'll need to import them. This import syntax allows us to grab several specific components out of the `react-router-dom` library at once. So far we've used `Router` and `Route`.
+In order to use the React Router components in `App.jsx`, you'll need to import them. This import syntax allows us to grab several specific components out of the `react-router-dom` library at once. So far we've used `Router` and `Route`.
 
 The Router component is actually called `BrowserRouter` inside the library package, but we'll use the `as` keyword to rename it to
 `Router` so it's easier to remember.
 
 While we're here, we'll also import a third component, `Link`, which we'll get to in a minute.
 
-Put this code at the top of your `App.js`
+Put this code at the top of your `App.jsx`
 
 ```js
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -289,7 +272,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 Here's how the imports and all the components look like together for our dental spa:
 
-**App.js**
+**App.jsx**
 
 ```js
 import React, { Component } from "react";
@@ -360,9 +343,9 @@ We'll add one `<Link>` component that leads to each of our different content pag
 
 > Did you notice that we don't reference components here? We simply make links for users to click that connect to URLs, and the `Router` section in the code handles the actual component changes.
 
-We can include those links in a `<nav>` element at the top of our page. It will stay on the page permanently, and the different components will be swapped between each other below it. There's actually nothing special about the `<nav>` element. It behaves exactly like a `<div>`. `<nav>` Is just a semantic element that gives your JSX more meaning when people read it.
+We can include those links in a `<nav>` element at the top of our page. It will stay on the page permanently, and the different components will be swapped between each other below it. There's actually nothing special about the `<nav>` element. It behaves exactly like a `<div>`. `<nav>` Is just a semantic element that gives your.JSXX more meaning when people read it.
 
-In your `App.js`, inside the `<Router>` (because we want it rendered!) and before the `Route` statements, put:
+In your `App.jsx`, inside the `<Router>` (because we want it rendered!) and before the `Route` statements, put:
 
 ```html
 <nav>
@@ -392,7 +375,7 @@ And now the nav bar will have spaces like it should. Try it!
 
 # Final Code
 
-Here's what our final `App.js` looks like:
+Here's what our final `App.jsx` looks like:
 
 ```js
 class App extends Component {
@@ -431,32 +414,34 @@ We're going to create another folder in `components` called `partials`; this wil
 
 We're going to create a component called `Header` which will contain our `nav` and nested `Link` tags. We'll wrap it all in a `<header>` tag to maintain semantic structure. This also allows us to add a bit more to this header later if we want (Like a logo).
 
-**REMEMBER**! Since we're taking our `<Link>` components out of `App.js`, we'll need to import them, same as any other imported component.
+**REMEMBER**! Since we're taking our `<Link>` components out of `App.jsx`, we'll need to import them, same as any other imported component.
 
-Here's what your `Header.js` should look like:
+Here's what your `Header.jsx` should look like:
 
-```jsx=
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+```js
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
     return (
       <header>
         <nav>
-          <Link to="/">Go to Home Page</Link>{' | '}
-          <Link to="/services">See Our Services</Link>{' | '}
+          <Link to="/">Go to Home Page</Link>
+          {" | "}
+          <Link to="/services">See Our Services</Link>
+          {" | "}
           <Link to="/contact">Contact Us!</Link>
         </nav>
       </header>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;
 ```
 
-Next, head to your `App.js` and replace the `nav` with our newly created `Header` component! Much cleaner and well organize! Marie Kondo would be proud!
+Next, head to your `App.jsx` and replace the `nav` with our newly created `Header` component! Much cleaner and well organize! Marie Kondo would be proud!
 
 > Remember to import `Header` and remove our import of `Link` since we aren't using it.
 
@@ -505,13 +490,13 @@ This allows a variable value to be passed in as part of the URL. When this value
 
 React Router has very similar functionality. When we are defining the paths in our `<Route>` components, we can specify a route parameter by including the same colon followed by a variable name:
 
-```jsx
+```js
 <Route path='/widgets/:id' ...
 ```
 
 Now, we can put variable values onto the end of our Link URLs when linking to this Route. But where do they show up? There is a special set of props that are passed into our component from the Route component but we have to add a little code to make them show up. First, the router must be using the `render` method and not the `component` method. This is because we must pass in props. Set your parameterized route up like so:
 
-```jsx
+```js
 <Route path="/widgets/:id" render={(props) => <WidgetShow {...props} />} />
 // Router provides the props here   ^^^^^ and we pass them in ^^^^^ here to our component.
 ```
@@ -522,8 +507,8 @@ That syntax `{...props}` is unpacking all of the props in the props object so th
 
 The one we are interested in is called `match`. We can find it in our component in `this.props` for class-based components or just `props` for function-based components. Here is how we might access it in our component:
 
-```jsx=
-import React, {Component} from 'react';
+```js
+import React, { Component } from "react";
 
 class WidgetShow extends Component {
   render() {
@@ -531,7 +516,7 @@ class WidgetShow extends Component {
       <div>
         <h1>You entered this URL parameter: {this.props.match.params.id}</h1>
       </div>
-    )
+    );
   }
 }
 
@@ -546,7 +531,7 @@ Let's use this functionality to render a component that shows more about a speci
 
 1. Make some fake data
    1.1. Make a folder for `data`
-   1.2.Make a `js` file that will export our data so we can import it to our relevant components _(eventually this will be data received from querying and API)_
+   1.2.Make a .jsx` file that will export our data so we can import it to our relevant components _(eventually this will be data received from querying and API)_
 2. Make our component
 3. Implement the route for it
 4. Search through the data to get the relevant information based on our URL parameter
@@ -562,9 +547,9 @@ We're organizing our code, so based on our current file structure, where do you 
 
 `src` is shorthand for `source`, which means our resources need to be in that folder. Our data isn't a component, so it doesn't make sense to put it in there. That leaves us creating a folder in `src` called `data`!
 
-Since we haven't learned how to query an API in React yet, we're going to make a javascript file that we can then import and utilize! Let's make a `serviceDetails.js` in our `data` folder.
+Since we haven't learned how to query an API in React yet, we're going to make a javascript file that we can then import and utilize! Let's make a `serviceDetails.jsx` in our `data` folder.
 
-In order to mimic data that might be received from and API, we are going to create and export an array of objects for our services. Create a variable called `serviceDetails` that is an array. For each of our services listed in `App.js`, we're going to make an object that has the keys `id`, `name`, `price`, and `description`. Feel free to take some time to create this yourself, or copy this data below!
+In order to mimic data that might be received from and API, we are going to create and export an array of objects for our services. Create a variable called `serviceDetails` that is an array. For each of our services listed in `App.jsx`, we're going to make an object that has the keys `id`, `name`, `price`, and `description`. Feel free to take some time to create this yourself, or copy this data below!
 
 ```javascript
 const serviceDetails = [
@@ -611,10 +596,10 @@ We're going to start but simply stubbing out our root. After we implement the ro
 
 We could put this in `pages` or `partials`. What are the arguments for putting it in one? What about for the other?
 
-For now, make a `Service.js` component in `pages` since we're going to be using a route for it. To stub it out, simply have a `div` with an `h3` for the name, an `h6` for the price, and a `p` for the description. It should look something like this:
+For now, make a `Service.jsx` component in `pages` since we're going to be using a route for it. To stub it out, simply have a `div` with an `h3` for the name, an `h6` for the price, and a `p` for the description. It should look something like this:
 
-```jsx=
-import React, { Component } from 'react'
+```js
+import React, { Component } from "react";
 
 class Service extends Component {
   render() {
@@ -624,32 +609,32 @@ class Service extends Component {
         <h6>$100.00</h6>
         <p>description</p>
       </div>
-    )
+    );
   }
 }
 
-export default Service
+export default Service;
 ```
 
 ### Step 3: Implement the Route
 
-Now that we have a stubbed out route, we need to see if we can render it! In our `App.js`, let's add another `Route` to `/services/:id`. Let's write it the same way that the notes above wrote `Widget`, passing props into the anonymous function and then using the spread operator to pass those to the component itself.
+Now that we have a stubbed out route, we need to see if we can render it! In our `App.jsx`, let's add another `Route` to `/services/:id`. Let's write it the same way that the notes above wrote `Widget`, passing props into the anonymous function and then using the spread operator to pass those to the component itself.
 
 > Remember to import your component!
 
-Now, go to `http://localhost:3000/services/test` to see if your stub is rendering! If not, check your `App.js`
+Now, go to `http://localhost:3000/services/test` to see if your stub is rendering! If not, check your `App.jsx`
 
-```jsx=
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+```js
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import Header from './components/partials/Header'
-import Home from './components/pages/Home'
-import Services from './components/pages/Services'
-import Contact from './components/pages/Contact'
-import Service from './components/pages/Service'
+import Header from "./components/partials/Header";
+import Home from "./components/pages/Home";
+import Services from "./components/pages/Services";
+import Contact from "./components/pages/Contact";
+import Service from "./components/pages/Service";
 
 class App extends Component {
   render() {
@@ -658,34 +643,40 @@ class App extends Component {
       "Filling",
       "Gum Massage",
       "Root Canal",
-      "Oral Mud Bath"
-    ]
+      "Oral Mud Bath",
+    ];
     return (
       <Router>
         <Header />
         <main>
           <Route exact path="/" component={Home} />
-          <Route path="/services" render={() => <Services services={services} />} />
-          <Route path="/services/:id" render={(props) => <Service {...props} />} />
+          <Route
+            path="/services"
+            render={() => <Services services={services} />}
+          />
+          <Route
+            path="/services/:id"
+            render={(props) => <Service {...props} />}
+          />
           <Route path="/contact" component={Contact} />
         </main>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
-Once that's working, we need to check to see if we can get the parameters! In `Service.js`, replace what's in the `h3` tag with `this.props.match.params.id`. Now if you go to `http://localhost:3000/services/hello`, your component will greet you!
+Once that's working, we need to check to see if we can get the parameters! In `Service.jsx`, replace what's in the `h3` tag with `this.props.match.params.id`. Now if you go to `http://localhost:3000/services/hello`, your component will greet you!
 
 ### Step 4: Get Data based on URL
 
-We can either get data in App and then render our component with secific info or get the data in the component and filter out what we need there. Since we have to get all the data at once, it makes more sense to do that in `App.js`.
+We can either get data in App and then render our component with secific info or get the data in the component and filter out what we need there. Since we have to get all the data at once, it makes more sense to do that in `App.jsx`.
 
 #### Import data
 
-Importing data from a file is as easy as `import movies from './data/movies'`. In our case, we will import `serviceDetails` and the link will be relative to our `App.js` (`./data/serviceDetails.js`). If we want to check if we imported it correctly, we can console log it in our `render` function.
+Importing data from a file is as easy as `import movies from './data/movies'`. In our case, we will import `serviceDetails` and the link will be relative to our `App.jsx` (`./data/serviceDetails.jsx`). If we want to check if we imported it correctly, we can console log it in our `render` function.
 
 #### Getting to `match` in our `Route`
 
@@ -713,7 +704,7 @@ Take 5-15 minutes to try to figure out how to impliment this. If you get stuck, 
 
 > Depending on what your component needs, some developers will get just `match` from `props` using destructuring. Many developers who use React Router will use this kind of object destructuring in their code. Note that this method makes other default props (like `props.history`) properties unavailable to this component.
 >
-> ```jsx
+> ```js
 > <Route
 >   path="/services/:id"
 >   render={({ match }) => {
@@ -742,7 +733,7 @@ Now that we have a specific service object, we can now pass that into our `Servi
 
 We'll use the 3rd method, but each of them has their merits. If you want to choose a different method, then go ahead, but make sure you know how you will reference that data in your `Service` component.
 
-```jsx
+```js
 <Route
   path="/services/:id"
   render={(props) => {
@@ -759,9 +750,9 @@ We'll use the 3rd method, but each of them has their merits. If you want to choo
 
 First, it is getting awfully tiring to write out these URLs ourselves, so we are going to pass our `serviceDetails` array to `Services` instead of our array of strings. Instead of rendering a list of strings, our `Services` page will now `Link` to each service!
 
-Step one is to change what array is passed to our component in `App.js`. Change `<Services services={services} />` to `<Services services={serviceDetails} />`.
+Step one is to change what array is passed to our component in `App.jsx`. Change `<Services services={services} />` to `<Services services={serviceDetails} />`.
 
-Next, we need to change what our `map` function returns in `Services.js`. Right now, we're just returning a list item with a string of the service name. We are going to instead return a `Link` component that links to `/services/:id` for each service.
+Next, we need to change what our `map` function returns in `Services.jsx`. Right now, we're just returning a list item with a string of the service name. We are going to instead return a `Link` component that links to `/services/:id` for each service.
 
 #### Try this on your own!
 
@@ -772,78 +763,76 @@ _Hintsssss_
 
 Check your work (it doesn't have to look exactly like this, but is functionally similar)
 
-```jsx=
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+```js
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Services extends Component {
   render() {
-    let services = this.props.services.map(service => (
+    let services = this.props.services.map((service) => (
       <li>
         <Link to={`/services/${service.id}`}>{service.name}</Link>
       </li>
-    ))
+    ));
     return (
       <div>
         <h1>Services</h1>
-        <ul>
-          {services}
-        </ul>
+        <ul>{services}</ul>
       </div>
-    )
+    );
   }
 }
 
-export default Services
+export default Services;
 ```
 
 Once we've got the links working, we need to update our component to render the service information it has been given! Replace the `<h3>` with the service name, the `<h6>` with the price, and the `<p>` with the description!
 
 Your code may look a little different if you choose to pass your service data to Service differently.
 
-###### Service.js
+###### Service.jsx
 
-```jsx=
-import React, { Component } from 'react'
+```js
+import React, { Component } from "react";
 
 class Service extends Component {
   render() {
-	return (
-	  <div>
-		<h3>{this.props.name}</h3>
-		<h6>${this.props.price}</h6>
-		<p>{this.props.description}</p>
-	  </div>
-	)
+    return (
+      <div>
+        <h3>{this.props.name}</h3>
+        <h6>${this.props.price}</h6>
+        <p>{this.props.description}</p>
+      </div>
+    );
   }
 }
 
-export default Service
+export default Service;
 ```
 
-Finally, we want to add a bit of conditional styling; if someone has gone to an id that doesn't exist yet, we want to display an `<h3>` that simply tells a user that there is not yet a service with that specific id. We'll use and `if...` statement in the `render` function of our `Service` component to render the warning if there is no name (it won't get passed down if the `array.find()` method in `App.js` didn't match anything). Else, return as normal!
+Finally, we want to add a bit of conditional styling; if someone has gone to an id that doesn't exist yet, we want to display an `<h3>` that simply tells a user that there is not yet a service with that specific id. We'll use and `if...` statement in the `render` function of our `Service` component to render the warning if there is no name (it won't get passed down if the `array.find()` method in `App.jsx` didn't match anything). Else, return as normal!
 
 > Because the code block of the `if` statement is a `return` statement, we don't need to explicitly use `else`; `return` exits the function, so any code after it doesn't get run! But if that condition isn't met, then that initial `return` statement never gets a chance to run, so our normal display shows.
 
-###### _Service.js_
+###### _Service.jsx_
 
-```jsx=
-import React, { Component } from 'react'
+```js
+import React, { Component } from "react";
 
 class Service extends Component {
-	render() {
-		if (!this.props.name) return <h3>That is not a service we have yet!</h3>
-		return (
-			<div>
-				<h3>{this.props.name}</h3>
-				<h6>${this.props.price}</h6>
-				<p>{this.props.description}</p>
-			</div>
-		)
-	}
+  render() {
+    if (!this.props.name) return <h3>That is not a service we have yet!</h3>;
+    return (
+      <div>
+        <h3>{this.props.name}</h3>
+        <h6>${this.props.price}</h6>
+        <p>{this.props.description}</p>
+      </div>
+    );
+  }
 }
 
-export default Service
+export default Service;
 ```
 
 Try putting in `http://localhost:3000/services/test` to see if you get your conditionally rendered message!
