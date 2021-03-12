@@ -1,8 +1,12 @@
-const Services = () => (
+import Service from '../pages/Service'
+
+
+
+
+const Services = (props) => (
     <div>
-        <p>Molar Massage</p>
-        <p>Root Canal</p>
-        <p>Cucumber Face Mask (but for your cavities)</p>
+        <h1>Here are the services we provide.</h1>
+        {props.services.map((service, i) => <Service key={i} service={service}/>)}
     </div>
 )
 
