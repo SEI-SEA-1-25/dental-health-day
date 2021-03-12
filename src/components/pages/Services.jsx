@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
 
-
-export default function Services(props) {
-    console.log(props)
+function Services(props) {
     return (
         <div>
-            <h1>Here are the services we provide:</h1>
-            {props.services.map((service, i) => <h3 key={i} >{service.description}</h3>)}
+            <h1>These are the services we provide:</h1>
+            {props.services.map((service) => (
+                <div>
+                    <Link to={`/services/${service.id}`}>{service.name}</Link>
+                </div>
+            ))}
         </div>
-    )
+    );
 }
+
+export default Services;
+// will take in a service and render it
