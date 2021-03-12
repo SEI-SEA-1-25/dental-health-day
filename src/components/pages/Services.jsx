@@ -1,9 +1,12 @@
 
+
 const Services = (props) => {
 
-    const serviceList = props.services.map((service, index) =>{
+    const serviceList = props.serviceDetails.map((serviceDetail, index) =>{
        return(
-       <h1 key={`service ${index}`} services={service}>{service}</h1>
+       <p key={`serviceName ${index}`}>Service: {serviceDetail.name}</p>
+    //    <p key={`service ${index}`}>price: {serviceDetail.price}</p>,
+    //    <p key={`service ${index}`}>Service Details: {serviceDetail.description}</p>
        ) 
     })
 
@@ -12,7 +15,7 @@ const Services = (props) => {
     <div className="Services">
       
        {serviceList}
-       
+
     </div>
     )
 }

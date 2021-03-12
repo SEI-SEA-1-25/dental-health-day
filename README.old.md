@@ -450,11 +450,7 @@ Our Router functionality right now is very cool but it lacks some very important
 It's actually very easy. Inside of our `<Route>`s we've been using the `component` attribute. If we want more custom control, we can use a function instead but we must change the attribute from `component` to `render`. First, let's simulate some data by adding a simple array into our App's function:
 
 ```js
-  const services = [
-    "Drillin' And Fillin'",
-    "Molar Massage",
-    "Cucumber Mask (but for your cavities)",
-  ];
+  
 
   return (
   // ...

@@ -3,14 +3,11 @@ import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 import Header from "./components/partials/Header";
+import serviceDetails from './data/serviceDetail';
 
 const App = () => {
   
-  const services = [
-    "Drillin' And Fillin'",
-    "Molar Massage",
-    "Cucumber Mask (but for your cavities)",
-  ]
+ 
     return (
       
       <BrowserRouter>
@@ -19,7 +16,7 @@ const App = () => {
       <Header/>
       <main>
         <Route exact path="/" component={Home}/>
-        <Route path="/services" render={() => <Services services={services} />}/>
+        <Route path="/services" render={() => <Services serviceDetails={serviceDetails} />}/>
         <Route path="/contact" component={Contact}/>
       </main>
     
