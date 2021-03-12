@@ -17,10 +17,22 @@ function App() {
     <Router>
       <Header />
       <main className="App">
-        <Route exact path="/" component={Home} />
-        <Route path="/services" render={() => <Services services={services} />} />
-        <Route path='/service/:id' render={(props) => <Service {...props} />} />
-        <Route path="/contact" component={Contact} />
+        <Route 
+          exact path="/" 
+          component={Home} 
+        />
+        <Route 
+          path="/services" 
+          render={() => <Services services={services} />} 
+        />
+        <Route 
+          path='/service/:id' 
+          render={(props) => <Service {...props} />} 
+        />
+        <Route 
+          path="/contact" 
+          component={Contact} 
+        />
       </main>
     </Router>
   );
