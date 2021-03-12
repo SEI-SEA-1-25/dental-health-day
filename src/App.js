@@ -6,6 +6,7 @@ import Header from './components/partials/Header.jsx'
 import Contact from './components/pages/Contact';
 import Home from './components/pages/Home';
 import Services from './components/pages/Services';
+import serviceDetails from './components/data/serviceDetails'
 
 
 
@@ -15,7 +16,7 @@ function App() {
       <main>
         <Header />
         <Route exact path="/" component={Home} />
-        <Route path="/services" component={Services} />
+        <Route path="/services" render={() => <Services services={serviceDetails} />} />
         <Route path="/contact" component={Contact} />
       </main>
     </Router>

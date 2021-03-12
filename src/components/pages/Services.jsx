@@ -1,9 +1,11 @@
-export default function Services() {
+
+
+export default function Services(props) {
+    console.log(props)
     return (
         <div>
-            <p>Molar Massage</p>
-            <p>Root Canal</p>
-            <p>Cucumber Mask</p>
+            <h1>Here are the services we provide:</h1>
+            {props.services.map((service, i) => <h3 key={i} >{service.description}</h3>)}
         </div>
     )
 }
