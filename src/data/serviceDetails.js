@@ -34,3 +34,5 @@ const serviceDetails = [
       description: "We shove your face in mud. Very good.",
     },
   ];
+
+  export default serviceDetails;
